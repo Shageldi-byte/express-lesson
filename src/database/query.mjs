@@ -21,6 +21,38 @@ export const getAllProductsQuery = `
 // SELECT * FROM users WHERE 1==1;
 // sql-injection 
 
-export const getAllBrandsQuery = `SELECT * FROM brand;`;
+export const getAllBrandsQuery = `SELECT * FROM brand ORDER BY id DESC;`;
 export const getAllSubCategoryQuery = `SELECT * FROM sub_category;`;
 export const getAllGendersQuery = `SELECT * FROM gender;`;
+export const getAllCategoryQuery = `SELECT * FROM category;`;
+export const getProductsByGender = `SELECT * FROM product WHERE gender_id=%s;`;
+
+export const addCategoryQuery = `INSERT INTO category(
+	name_tm, name_ru)
+	VALUES ($1, $2) RETURNING *;`;
+
+export const getSubCategoryByCatId = `SELECT * FROM sub_category where category_id=$1;`;
+
+export const deleteCategoryQuery = `DELETE FROM category WHERE id = $1`;
+
+export const updateCategoryQuery = `
+UPDATE public.category
+	SET name_tm=$1, name_ru=$2, updated_at=now()
+	WHERE id=$3 RETURNING *;
+`;
+
+export const insertMultipleCategoryQuery = `
+    INSERT INTO category(
+    name_tm, name_ru)
+    VALUES %L RETURNING *;
+`;
+
+export const addBrandQuery=`
+INSERT INTO public.brand(name, image) VALUES ($1,$2) RETURNING *;
+`;
+
+
+export const addBannerQuery = `
+INSERT INTO public.banner(banner_image_tm, banner_image_en, banner_image_ru)
+VALUES ($1,$2,$3) RETURNING *;
+`;
