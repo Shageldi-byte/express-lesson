@@ -68,6 +68,8 @@ export const getAllProducts = (req,res)=> {
     } = req.query;
 
 
+
+
     const {
         sort
     } = req.body;
@@ -78,7 +80,10 @@ export const getAllProducts = (req,res)=> {
     
     db.query(query,[limit,page])
     .then(result=>{
-        res.json(result.rows);
+        res.json({
+            isLogin: req.isLogin,
+            body: result.rows
+        });
     })
     .catch(err=>{
         res.send(query);

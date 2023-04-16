@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
+import rateLimit from "express-rate-limit";
 import router from "./src/router.mjs";
-import rateLimit from 'express-rate-limit';
 
 const limiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 15 minutes
@@ -27,7 +27,7 @@ const logger=(req,res,next) => {
 }
 
 app.use(cors());
-app.use(limiter)
+// app.use(limiter)
 app.use(logger);
 app.use(express.json({extended: true}));
 app.use(express.urlencoded({ extended: true}));

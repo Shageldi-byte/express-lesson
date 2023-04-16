@@ -56,3 +56,8 @@ export const addBannerQuery = `
 INSERT INTO public.banner(banner_image_tm, banner_image_en, banner_image_ru)
 VALUES ($1,$2,$3) RETURNING *;
 `;
+
+
+export const loginQuery = `
+SELECT * FROM users WHERE username=$1 AND password=$2 LIMIT 1;
+`;
