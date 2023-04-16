@@ -5,6 +5,7 @@ import categoryController from "./category/controller/category.controller.mjs";
 import express from "express";
 import homeController from "./home/home.controller.mjs";
 import multipleController from "./multiple/multiple.controller.mjs";
+import parseController from "./parse/parse.controller.mjs";
 import productController from "./product/controller/product.controller.mjs";
 import userController from "./user/controller/user.controller.mjs";
 
@@ -17,5 +18,6 @@ router.use('/brand',brandController);
 router.use('/banner',bannerController);
 router.use('/home',homeController);
 router.use('/auth',authController);
+router.use('/parse',parseController);
 
 export default router;

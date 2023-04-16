@@ -61,3 +61,9 @@ VALUES ($1,$2,$3) RETURNING *;
 export const loginQuery = `
 SELECT * FROM users WHERE username=$1 AND password=$2 LIMIT 1;
 `;
+
+export const addNewsQuery = `
+INSERT INTO public.news(
+	image, title, description, time_news)
+	VALUES %L;
+`;
