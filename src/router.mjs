@@ -4,6 +4,7 @@ import brandController from "./brand/brand.controller.mjs";
 import categoryController from "./category/controller/category.controller.mjs";
 import express from "express";
 import homeController from "./home/home.controller.mjs";
+import mailController from "./mailer/mailer.controller.mjs";
 import multipleController from "./multiple/multiple.controller.mjs";
 import parseController from "./parse/parse.controller.mjs";
 import productController from "./product/controller/product.controller.mjs";
@@ -19,5 +20,6 @@ router.use('/banner',bannerController);
 router.use('/home',homeController);
 router.use('/auth',authController);
 router.use('/parse',parseController);
+router.use('/mailer',mailController);
 
 export default router;

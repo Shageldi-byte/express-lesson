@@ -93,7 +93,9 @@ export async function signIn(req,res){
                 user.password = "";
                 res.json(responseGenerator(user));
             } else {
-                badRequest(res,{en:'Invalid password'},403);
+                badRequest(res,{
+                    en:'Invalid password'
+                },403);
             }
         } else {
             badRequest(res,'user not found');

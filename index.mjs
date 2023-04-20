@@ -1,7 +1,9 @@
+import TurkmenAutocomplete from "turkmen-autocomplete";
 import cors from "cors";
 import express from "express";
 import rateLimit from "express-rate-limit";
 import router from "./src/router.mjs";
+import { Server } from "socket.io";
 
 const limiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 15 minutes
@@ -34,6 +36,35 @@ app.use(express.urlencoded({ extended: true}));
 app.use('/public',express.static('public'));
 app.use('/api',router);
 
-app.listen(PORT, ()=>{
+const server = app.listen(PORT, ()=>{
     console.log(`listening on port: ${PORT}`);
-})
+    console.log(new TurkmenAutocomplete().getWords())
+});
+
+const socketIo = new Server(server, {
+  cors: {
+    origin: '*', // Allow any origin for testing purposes. This should be changed on production.
+  },
+});
+
+socketIo.on('connection', (socket) => {
+  console.log('New connection created', socket.id);
+//   console.log(socket);
+
+
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+
+  socket.on('onMail',(data)=>{
+    console.log(data);
+    
+  })
+
+
+});
+
+export {socketIo};
+
+
