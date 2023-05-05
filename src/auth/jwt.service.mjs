@@ -1,6 +1,7 @@
-import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 
-// import jwt from "jsonwebtoken";
+// import dotenv from "dotenv";
+
 
 // get config vars
 // dotenv.config();
