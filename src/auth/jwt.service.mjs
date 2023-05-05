@@ -1,8 +1,9 @@
 import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
+
+// import jwt from "jsonwebtoken";
 
 // get config vars
-dotenv.config();
+// dotenv.config();
 
 export function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
@@ -10,7 +11,7 @@ export function authenticateToken(req, res, next) {
   
   if (token == null) return res.sendStatus(401)
 
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, "", (err, user) => {
     console.log(err)
 
     if (err) return res.sendStatus(403)
