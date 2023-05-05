@@ -1,16 +1,17 @@
-import bcrypt from "bcrypt";
-import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { responseGenerator } from "../core/app.response.mjs";
 import { db } from "../database/connection.mjs";
 import { loginQuery } from "../database/query.mjs";
 import { badRequest } from "../exception/app.exception.mjs";
 
+// import bcrypt from "bcrypt";
+// import dotenv from "dotenv";
+
 // get config vars
-dotenv.config();
+// dotenv.config();
 
 // access config var
-let key = process.env.TOKEN_SECRET;
+// let key = process.env.TOKEN_SECRET;
 
 function generateToken(data){
     return jwt.sign(data,key);
@@ -40,7 +41,7 @@ export function login(req,res){
 }
 
 async function checkUser(password,hash) {
-    return await bcrypt.compare(password, hash);
+    // return await bcrypt.compare(password, hash);
 }
 
 
@@ -67,12 +68,12 @@ export async function signUp(req,res){
         dob
     } = req.body;
     
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        console.log(err);
-        bcrypt.hash(password, salt, function(err, hash) {
-            createUser({fullname,username,dob,password:hash},res);
-        });
-    });
+    // bcrypt.genSalt(saltRounds, function(err, salt) {
+    //     console.log(err);
+    //     bcrypt.hash(password, salt, function(err, hash) {
+    //         createUser({fullname,username,dob,password:hash},res);
+    //     });
+    // });
 
   
 
